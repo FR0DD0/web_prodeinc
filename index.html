@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRODEINC LTDA | Ingeniería de Consulta y Construcción</title>
+  <meta name="description" content="PRODEINC LTDA - Empresa líder en estudios, diseño, construcción, interventoría y gerencia de proyectos de ingeniería civil en Colombia y Latinoamérica. Certificación ISO 9001:2000.">
+  
+  <!-- Google Fonts: Outfit (titles) and Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0b1329',      /* Slate-950 equivalent */
+              darkBlue: '#1c2541',  /* Slate-900 equivalent */
+              blue: '#3a506b',      /* Slate-700 equivalent */
+              cyan: '#5bc0be',      /* Accent bright cyan */
+              accent: '#f59e0b',    /* Accent Amber */
+              light: '#f8fafc',     /* Slate-50 */
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS Styles -->
+  <style>
+    /* Custom blueprint grid background pattern */
+    .blueprint-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(91, 192, 190, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(91, 192, 190, 0.05) 1px, transparent 1px);
+    }
+    
+    /* Smooth scroll behavior */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar styles for dark panels */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1329;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1c2541;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3a506b;
+    }
+
+    /* Desktop slide container logic */
+    @media (min-width: 1024px) {
+      .desktop-slide-container {
+        display: flex;
+        flex-direction: row;
+        width: 600%;
+        height: 100%;
+        transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .desktop-slide-section {
+        width: 16.666667%;
+        height: 100%;
+        overflow-y: auto;
+        flex-shrink: 0;
+      }
+    }
+
+    /* Mobile vertical layout logic */
+    @media (max-width: 1023px) {
+      .desktop-slide-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+      }
+      .desktop-slide-section {
+        width: 100%;
+        height: auto;
+        min-height: calc(100vh - 5rem);
+      }
+    }
+  </style>
+</head>
+<body class="bg-brand-navy text-slate-100 font-sans selection:bg-brand-cyan selection:text-brand-navy min-h-screen flex flex-col overflow-x-hidden blueprint-grid">
+
+  <!-- ================= HEADER & NAV BAR ================= -->
+  <header class="h-20 bg-brand-navy/90 border-b border-slate-800 backdrop-blur-md fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8">
+    <!-- Logo and Company Name -->
+    <a href="#inicio" onclick="goToSection(0); return false;" class="flex items-center gap-3 group">
+      <!-- Custom Geometric Construction/Engineering SVG Logo -->
+      <div class="w-11 h-11 bg-gradient-to-br from-brand-cyan to-brand-accent p-[2px] rounded-lg shadow-lg shadow-brand-cyan/20 group-hover:scale-105 transition-transform duration-300">
+        <div class="w-full h-full bg-brand-navy rounded-[6px] flex items-center justify-center overflow-hidden">
+          <svg class="w-7 h-7 text-brand-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h1 class="font-display font-extrabold text-xl md:text-2xl tracking-tight leading-none text-white">
+          PRODEINC <span class="text-brand-accent">LTDA</span>
+        </h1>
+        <p class="text-[9px] md:text-[10px] text-brand-cyan tracking-wider font-semibold uppercase mt-0.5">
+          Ingeniería de Consulta y Construcción
+        </p>
+      </div>
+    </a>
+
+    <!-- Navigation Tab Bar (Desktop: Horizontal tab buttons) -->
+    <nav class="hidden lg:flex bg-slate-900/60 border border-slate-800 rounded-full p-1 relative shadow-inner">
+      <!-- Sliding active background pill -->
+      <div id="active-indicator" class="absolute bg-brand-cyan/10 border border-brand-cyan/30 rounded-full h-8 transition-all duration-300 pointer-events-none" style="width: 0; left: 0; top: 3px;"></div>
+      
+      <button onclick="goToSection(0)" class="tab-btn px-5 py-1.5 text-sm font-medium tracking-wide rounded-full text-brand-cyan font-semibold transition-all duration-300 relative z-10">
+        Inicio
+      </button>
+      <button onclick="goToSection(1)" class="tab-btn px-5 py-1.5 text-sm font-medium tracking-wide rounded-full text-slate-400 hover:text-white transition-all duration-300 relative z-10">
+        Quiénes Somos
+      </button>
+      <button onclick="goToSection(2)" class="tab-btn px-5 py-1.5 text-sm font-medium tracking-wide rounded-full text-slate-400 hover:text-white transition-all duration-300 relative z-10">
+        Servicios
+      </button>
+      <button onclick="goToSection(3)" class="tab-btn px-5 py-1.5 text-sm font-medium tracking-wide rounded-full text-slate-400 hover:text-white transition-all duration-300 relative z-10">
+        Experiencia
+      </button>
+      <button onclick="goToSection(4)" class="tab-btn px-5 py-1.5 text-sm font-medium tracking-wide rounded-full text-slate-400 hover:text-white transition-all duration-300 relative z-10">
+        Equipo
+      </button>
+      <button onclick="goToSection(5)" class="tab-btn px-5 py-1.5 text-sm font-medium tracking-wide rounded-full text-slate-400 hover:text-white transition-all duration-300 relative z-10">
+        Contacto
+      </button>
+    </nav>
+
+    <!-- Certifications & NIT Info Header Details -->
+    <div class="flex items-center gap-4 text-right">
+      <div class="hidden sm:block">
+        <span class="block text-[10px] text-slate-400 font-medium">NIT: 800.115.971-3</span>
+        <span class="inline-flex items-center gap-1 text-xs text-brand-cyan font-semibold mt-0.5">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M6.267 3.455a.75.75 0 00-.708.522L4.547 7.22h1.5l.347-1.115a.75.75 0 011.436.002L8.52 8.3l.01.03a.75.75 0 001.436-.002l.668-2.148 1.055 3.393a.75.75 0 001.435.002l.808-2.6h1.5l-.837 2.69a.75.75 0 001.415.498l1.25-4a.75.75 0 00-.708-.97h-2.18l-.426 1.37-1.055-3.394a.75.75 0 00-1.435-.002l-.668 2.148-.69-2.217a.75.75 0 00-1.436-.002L6.267 3.455zM2 7.97a.75.75 0 01.75-.75h1.1l.625-2A2.25 2.25 0 018.8 3.75h.4a2.25 2.25 0 012.164 1.57l.21.673.352-1.134A2.25 2.25 0 0114.09 3.75h2.16a2.25 2.25 0 012.124 2.912l-1.077 3.447h.953a.75.75 0 010 1.5h-1.42l-.248.796a2.25 2.25 0 01-2.124 1.595h-1.16a2.25 2.25 0 01-2.149-1.57l-.21-.673-.352 1.134a2.25 2.25 0 01-2.164 1.488h-.4a2.25 2.25 0 01-2.164-1.57l-.21-.673-.352 1.134A2.25 2.25 0 012.91 11.25H2a.75.75 0 01-.75-.75V7.97z" clip-rule="evenodd"></path>
+          </svg>
+          ISO 9001:2000
+        </span>
+      </div>
+      
+      <!-- Mobile Menu Button (triggers scroll anchor or displays menu overlay) -->
+      <div class="lg:hidden">
+        <button id="mobile-menu-btn" class="p-2 text-slate-400 hover:text-white focus:outline-none" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Floating Navigation Overlay -->
+  <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-brand-navy/95 flex flex-col justify-center items-center gap-6 text-xl font-display border-b border-slate-800">
+    <button onclick="goToSection(0); toggleMobileMenu();" class="text-white hover:text-brand-cyan transition">Inicio</button>
+    <button onclick="goToSection(1); toggleMobileMenu();" class="text-white hover:text-brand-cyan transition">Quiénes Somos</button>
+    <button onclick="goToSection(2); toggleMobileMenu();" class="text-white hover:text-brand-cyan transition">Servicios</button>
+    <button onclick="goToSection(3); toggleMobileMenu();" class="text-white hover:text-brand-cyan transition">Experiencia</button>
+    <button onclick="goToSection(4); toggleMobileMenu();" class="text-white hover:text-brand-cyan transition">Equipo</button>
+    <button onclick="goToSection(5); toggleMobileMenu();" class="text-white hover:text-brand-cyan transition">Contacto</button>
+    <button onclick="toggleMobileMenu();" class="absolute top-6 right-6 text-slate-400 hover:text-white">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ================= MAIN SCROLL CONTAINER ================= -->
+  <main class="flex-grow pt-20 overflow-hidden relative">
+    <div id="section-container" class="desktop-slide-container">
+
+      <!-- SECTION 1: INICIO (HOME) -->
+      <section id="inicio" class="desktop-slide-section bg-gradient-to-br from-brand-navy to-brand-darkBlue px-6 py-10 md:px-16 md:py-16 flex flex-col justify-center relative">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-10">
+          
+          <!-- Left side: Hero Text -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-cyan/10 border border-brand-cyan/20 rounded-full text-brand-cyan text-xs font-semibold uppercase tracking-wider">
+              <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-cyan opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-cyan"></span>
+              </span>
+              Ingeniería con Sello de Calidad
+            </div>
+            
+            <h2 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-none">
+              Construyendo el futuro con <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-accent">rigor y calidad</span>
+            </h2>
+            
+            <p class="text-slate-300 text-base sm:text-lg max-w-xl font-light leading-relaxed">
+              En <strong class="text-white font-medium">PRODEINC LTDA</strong>, transformamos ideas en grandes obras de infraestructura. Con más de 20 años de experiencia, lideramos estudios, diseño, construcción e interventoría bajo la certificación <span class="text-brand-cyan font-medium">ISO 9001:2000</span>.
+            </p>
+            
+            <div class="flex flex-wrap gap-4 pt-2">
+              <button onclick="goToSection(2)" class="px-6 py-3 bg-brand-cyan hover:bg-brand-cyan/80 text-brand-navy font-semibold rounded-lg shadow-lg shadow-brand-cyan/25 hover:shadow-brand-cyan/40 transition-all duration-300 hover:-translate-y-0.5">
+                Nuestros Servicios
+              </button>
+              <button onclick="goToSection(4)" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg border border-slate-700 hover:border-slate-600 transition-all duration-300 hover:-translate-y-0.5">
+                Contactar Ahora
+              </button>
+            </div>
+          </div>
+          
+          <!-- Right side: Info Card / Visual Graphic -->
+          <div class="lg:col-span-5">
+            <div class="relative bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-2xl overflow-hidden group">
+              <!-- Background gradient glow -->
+              <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-cyan/10 rounded-full blur-3xl group-hover:bg-brand-cyan/20 transition duration-500"></div>
+              <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-brand-accent/5 rounded-full blur-3xl group-hover:bg-brand-accent/10 transition duration-500"></div>
+              
+              <h3 class="font-display font-bold text-lg text-white mb-6 border-b border-slate-800 pb-3 flex items-center justify-between">
+                <span>Información Corporativa</span>
+                <span class="text-xs text-slate-500 font-mono">ID: PRO-800</span>
+              </h3>
+              
+              <div class="space-y-4 relative z-10">
+                <div class="flex items-start gap-4">
+                  <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-xs text-slate-500 uppercase tracking-wider">Nombre Legal</span>
+                    <span class="text-sm font-semibold text-slate-200">PRODEINC LTDA</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-xs text-slate-500 uppercase tracking-wider">NIT</span>
+                    <span class="text-sm font-semibold text-slate-200">800.115.971-3</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-xs text-slate-500 uppercase tracking-wider">Registros Oficiales</span>
+                    <span class="text-sm font-semibold text-slate-200 block">Cámara de Comercio de Valledupar</span>
+                    <span class="text-xs text-slate-400">Registrado ante la DIAN</span>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-4">
+                  <div class="p-2 bg-brand-accent/10 rounded-lg text-brand-accent mt-0.5">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l3-3z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="block text-xs text-brand-accent uppercase tracking-wider font-semibold">Certificación Destacada</span>
+                    <span class="text-sm font-bold text-white block">ISO 9001:2000</span>
+                    <span class="text-[11px] text-slate-400">Sistemas de Gestión de Calidad en Ingeniería</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- SECTION 2: QUIÉNES SOMOS -->
+      <section id="quienes-somos" class="desktop-slide-section bg-gradient-to-br from-brand-navy via-brand-darkBlue to-slate-900 px-6 py-10 md:px-16 md:py-16 flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full space-y-10">
+          
+          <div class="border-l-4 border-brand-cyan pl-4">
+            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white tracking-tight">
+              Quiénes Somos
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 uppercase tracking-widest font-semibold">
+              Trayectoria, Misión y Visión de Expansión
+            </p>
+          </div>
+
+          <!-- Mission and Vision Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Misión Card -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-brand-cyan/30 transition-all duration-300 shadow-xl relative group flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <!-- Custom SVG for Mission (Target & Arrow) -->
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                
+                <h3 class="font-display font-bold text-2xl text-white mb-4">Nuestra Misión</h3>
+                <p class="text-slate-300 font-light leading-relaxed text-sm sm:text-base">
+                  Prestar servicios de excelencia a entidades estatales y privadas en consultoría técnica, mediante la realización de estudios, diseños, construcción de obras civiles, interventoría técnica y administrativa, así como la dirección y gerencia integral de proyectos de ingeniería civil.
+                </p>
+              </div>
+              <div class="mt-6 pt-4 border-t border-slate-800/80 flex justify-between items-center text-xs text-brand-cyan">
+                <span>Rigor Técnico</span>
+                <span>•</span>
+                <span>Compromiso Social</span>
+                <span>•</span>
+                <span>Transparencia</span>
+              </div>
+            </div>
+
+            <!-- Visión Card -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-brand-accent/30 transition-all duration-300 shadow-xl relative group flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <!-- Custom SVG for Vision (Globe & Growth Arrow) -->
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                  </svg>
+                </div>
+                
+                <h3 class="font-display font-bold text-2xl text-white mb-4">Nuestra Visión</h3>
+                <p class="text-slate-300 font-light leading-relaxed text-sm sm:text-base">
+                  Ser reconocidos a nivel nacional por los más altos estándares de calidad y cumplimiento, implementando de manera constante tecnologías de punta en cada una de nuestras áreas de servicio, lo cual nos permitirá consolidar y expandir nuestra presencia hacia nuevos horizontes en el mercado de Latinoamérica.
+                </p>
+              </div>
+              <div class="mt-6 pt-4 border-t border-slate-800/80 flex justify-between items-center text-xs text-brand-accent">
+                <span>Expansión Latam</span>
+                <span>•</span>
+                <span>Tecnología de Punta</span>
+                <span>•</span>
+                <span>Liderazgo</span>
+              </div>
+            </div>
+            
+          </div>
+
+          <!-- Bottom Grid: CCV, DIAN & Quality standard commitment -->
+          <div class="bg-gradient-to-r from-brand-darkBlue to-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="space-y-2 max-w-2xl">
+              <h4 class="font-display font-semibold text-lg text-white">Cumplimiento Legal y Respaldo Gremial</h4>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                Operamos con total transparencia y formalidad. Estamos registrados formalmente en la Cámara de Comercio de Valledupar y autorizados ante la Dirección de Impuestos y Aduanas Nacionales (DIAN), cumpliendo con todas las obligaciones tributarias y comerciales vigentes en la República de Colombia.
+              </p>
+            </div>
+            <div class="flex gap-4 shrink-0">
+              <div class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-center">
+                <span class="block text-[9px] uppercase tracking-wider text-slate-500">Cámara Comercio</span>
+                <span class="text-xs font-bold text-slate-300">Valledupar</span>
+              </div>
+              <div class="px-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-center">
+                <span class="block text-[9px] uppercase tracking-wider text-slate-500">Autorización</span>
+                <span class="text-xs font-bold text-slate-300">DIAN</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 3: SERVICIOS -->
+      <section id="servicios" class="desktop-slide-section bg-gradient-to-br from-brand-navy to-brand-darkBlue px-6 py-10 md:px-16 md:py-16 flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full space-y-8">
+          
+          <div class="border-l-4 border-brand-cyan pl-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white tracking-tight">
+                Portafolio de Servicios
+              </h2>
+              <p class="text-slate-400 text-sm mt-1 uppercase tracking-widest font-semibold">
+                Nuestras Líneas de Gestión e Ingeniería Civil
+              </p>
+            </div>
+          </div>
+
+          <!-- Services Grid split in two groups -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Grid: Main Lines of Action (6 items) -->
+            <div class="lg:col-span-5 space-y-4">
+              <h3 class="font-display font-bold text-xl text-white mb-4 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan"></span>
+                Servicios Principales
+              </h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Service Card 1 -->
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-4 hover:bg-slate-900 transition duration-300">
+                  <div class="text-brand-cyan font-bold text-lg font-display">Estudios</div>
+                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Análisis previos de factibilidad, topografía, geotecnia e impacto socioambiental.
+                  </p>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-4 hover:bg-slate-900 transition duration-300">
+                  <div class="text-brand-cyan font-bold text-lg font-display">Diseño</div>
+                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Modelado estructural e hidráulico con software de última generación.
+                  </p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-4 hover:bg-slate-900 transition duration-300">
+                  <div class="text-brand-cyan font-bold text-lg font-display">Construcción</div>
+                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Ejecución de obras civiles bajo estrictos parámetros de seguridad y calidad técnica.
+                  </p>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-4 hover:bg-slate-900 transition duration-300">
+                  <div class="text-brand-cyan font-bold text-lg font-display">Interventoría</div>
+                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Supervisión técnica, administrativa, financiera y legal de contratos de obra.
+                  </p>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-4 hover:bg-slate-900 transition duration-300">
+                  <div class="text-brand-cyan font-bold text-lg font-display">Dirección</div>
+                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Liderazgo operacional en campo coordinando recursos humanos y tecnológicos.
+                  </p>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-4 hover:bg-slate-900 transition duration-300">
+                  <div class="text-brand-cyan font-bold text-lg font-display">Gerencia</div>
+                  <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                    Administración y estructuración financiera integral de proyectos de infraestructura.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Grid: Branches/Ramas (11 items) -->
+            <div class="lg:col-span-7 space-y-4">
+              <h3 class="font-display font-bold text-xl text-white mb-4 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-accent"></span>
+                Ramas de Especialidad en Ingeniería
+              </h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                
+                <!-- Rama 1 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">01.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Obras Viales</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Vías principales y urbanas.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 2 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">02.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Hidráulicas</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Canales, presas y distritos.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 3 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">03.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Sanitarias</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Redes de alcantarillado.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 4 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">04.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Ambientales</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Tratamiento y mitigación.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 5 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">05.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Edificaciones</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Estructuras residenciales.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 6 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">06.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Urbanismo</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Espacio público y parques.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 7 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">07.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Transporte</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Sistemas de movilidad.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 8 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">08.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Minería</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Infraestructura minera.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 9 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">09.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Hidrocarburos</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Facilidades y oleoductos.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 10 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300 sm:col-span-2 lg:col-span-1">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">10.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Sistemas Ind.</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5 font-sans">Plantas de producción.</p>
+                  </div>
+                </div>
+
+                <!-- Rama 11 -->
+                <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-3 flex items-start gap-3 hover:border-slate-700 transition duration-300 sm:col-span-2 lg:col-span-2">
+                  <span class="text-brand-accent text-sm font-semibold mt-0.5">11.</span>
+                  <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-sans">Montajes Electromecánicos</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">Redes eléctricas y maquinarias de potencia.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 4: EXPERIENCIA -->
+      <section id="experiencia" class="desktop-slide-section bg-gradient-to-br from-brand-navy via-brand-darkBlue to-slate-900 px-6 py-10 md:px-16 md:py-12 flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full space-y-6 flex flex-col h-full justify-between">
+          
+          <!-- Section Header and KPIs -->
+          <div class="space-y-4">
+            <div class="border-l-4 border-brand-cyan pl-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white tracking-tight">
+                  Experiencia de la Firma
+                </h2>
+                <p class="text-slate-400 text-sm mt-1 uppercase tracking-widest font-semibold">
+                  Historial de Contratos y Proyectos Ejecutados
+                </p>
+              </div>
+              
+              <!-- Toggle buttons Table / Cards -->
+              <div class="flex bg-slate-950/80 border border-slate-800 rounded-lg p-1 shrink-0">
+                <button id="btn-view-table" onclick="setExperienceView('table')" class="px-3 py-1.5 text-xs font-semibold rounded-md bg-brand-cyan text-brand-navy transition duration-200 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                  Tabla
+                </button>
+                <button id="btn-view-cards" onclick="setExperienceView('cards')" class="px-3 py-1.5 text-xs font-semibold rounded-md text-slate-400 hover:text-white transition duration-200 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                  </svg>
+                  Tarjetas
+                </button>
+              </div>
+            </div>
+
+            <!-- Summary Text -->
+            <p class="text-slate-300 text-sm font-light leading-relaxed max-w-4xl">
+              PRODEINC LTDA ha ejecutado exitosamente más de 30 contratos de gran envergadura en infraestructura vial, consultoría técnica, interventoría de mantenimiento y obras civiles en los departamentos de Cesar, Boyacá, Magdalena y otras regiones de Colombia, respaldando nuestro compromiso con el desarrollo nacional.
+            </p>
+
+            <!-- Grid KPIs -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4">
+                <span class="block text-[10px] text-slate-500 uppercase font-semibold tracking-wider">Contratos Reportados</span>
+                <span class="text-2xl font-extrabold text-white font-display">29 Proyectos</span>
+              </div>
+              <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4">
+                <span class="block text-[10px] text-slate-500 uppercase font-semibold tracking-wider">Inversión Sumada</span>
+                <span class="text-2xl font-extrabold text-brand-cyan font-display">+$24,300 Millones</span>
+              </div>
+              <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4">
+                <span class="block text-[10px] text-slate-500 uppercase font-semibold tracking-wider">Cobertura Regional</span>
+                <span class="text-2xl font-extrabold text-white font-display">Nacional (Cesar/Boyacá)</span>
+              </div>
+              <div class="bg-slate-900/40 border border-slate-800/80 rounded-xl p-4">
+                <span class="block text-[10px] text-slate-500 uppercase font-semibold tracking-wider">Formas de Ejecución</span>
+                <span class="text-2xl font-extrabold text-brand-accent font-display">I, C, UT (100%)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Search and Filter Bar -->
+          <div class="flex flex-col sm:flex-row gap-4 items-stretch justify-between bg-slate-900/40 p-4 border border-slate-800/80 rounded-xl">
+            <!-- Search bar -->
+            <div class="relative flex-grow">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 pointer-events-none">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </span>
+              <input type="text" id="exp-search" oninput="filterExperience()" placeholder="Buscar por contrato, objeto, año o palabra clave..." class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg pl-9 pr-4 py-2.5 text-sm text-white transition outline-none">
+            </div>
+
+            <!-- Execution Type Filter -->
+            <div class="w-full sm:w-64">
+              <select id="exp-filter-type" onchange="filterExperience()" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg px-4 py-2.5 text-sm text-white transition outline-none">
+                <option value="all">Todas las Formas de Ejecución</option>
+                <option value="C">Construcción (C)</option>
+                <option value="I">Interventoría / Consultoría (I)</option>
+                <option value="UT">Unión Temporal (UT)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Rendering Area -->
+          <div class="flex-grow overflow-hidden relative min-h-[350px]">
+            <!-- Table View Container -->
+            <div id="experience-table-view" class="h-full overflow-auto border border-slate-800 rounded-xl bg-slate-950/60">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead class="bg-slate-900/80 text-[10px] uppercase font-semibold text-slate-400 border-b border-slate-800 sticky top-0 backdrop-blur">
+                  <tr>
+                    <th class="p-3">Contrato y Año</th>
+                    <th class="p-3 max-w-xs md:max-w-md">Objeto del Contrato</th>
+                    <th class="p-3 text-right">Valor Inicial</th>
+                    <th class="p-3 text-center">Ejecución</th>
+                    <th class="p-3 text-center">% Part.</th>
+                    <th class="p-3 text-center">Plazo</th>
+                    <th class="p-3 text-right">Adiciones</th>
+                    <th class="p-3 text-right">Valor Total Actualizado</th>
+                  </tr>
+                </thead>
+                <tbody id="contracts-table-body" class="divide-y divide-slate-800/50">
+                  <!-- JS Rendered rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Cards View Container (Hidden initially) -->
+            <div id="experience-cards-view" class="hidden h-full overflow-y-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 pb-4">
+              <!-- JS Rendered cards -->
+            </div>
+            
+            <!-- Empty state -->
+            <div id="experience-empty-state" class="hidden absolute inset-0 flex flex-col justify-center items-center gap-2 text-slate-500">
+              <svg class="w-12 h-12 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-sm">No se encontraron contratos que coincidan con la búsqueda.</span>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <!-- SECTION 5: EQUIPO -->
+      <section id="equipo" class="desktop-slide-section bg-gradient-to-br from-brand-navy via-brand-darkBlue to-slate-900 px-6 py-10 md:px-16 md:py-16 flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full space-y-10">
+          
+          <div class="border-l-4 border-brand-cyan pl-4">
+            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white tracking-tight">
+              Liderazgo y Equipo Directivo
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 uppercase tracking-widest font-semibold">
+              Profesionales Calificados Detrás de Cada Proyecto
+            </p>
+          </div>
+
+          <!-- Team Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Card Representative: Juan Carlos -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-brand-cyan/40 transition-all duration-300 shadow-2xl relative group">
+              <!-- Corner Decorative icon -->
+              <div class="absolute top-6 right-6 w-16 h-16 opacity-5 text-brand-cyan">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                <!-- Avatar Circle with Initial -->
+                <div class="w-20 h-20 shrink-0 bg-gradient-to-br from-brand-cyan to-brand-blue rounded-full flex items-center justify-center font-display font-extrabold text-white text-3xl shadow-lg border border-slate-700 shadow-brand-cyan/10">
+                  JB
+                </div>
+                
+                <div class="space-y-3 text-center sm:text-left">
+                  <div>
+                    <h3 class="font-display font-bold text-2xl text-white">Juan Carlos Bayeh Rangel</h3>
+                    <p class="text-xs text-brand-cyan font-semibold tracking-wider uppercase mt-0.5">Representante Legal</p>
+                    <p class="text-sm text-slate-300 font-medium mt-1">Ingeniero de Transportes y Vías</p>
+                  </div>
+                  
+                  <div class="text-xs text-slate-400 space-y-1 bg-slate-950/40 p-3 rounded-lg border border-slate-800/80 inline-block text-left w-full sm:w-auto">
+                    <span class="block"><strong class="text-slate-200">Matrícula Prof:</strong> 01193-0266 del CPITYVC</span>
+                    <span class="block"><strong class="text-slate-200">Certificación:</strong> Lead Auditor ISO 9001:2000</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Software Expertise -->
+              <div class="mt-6 pt-5 border-t border-slate-800/80">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center sm:text-left">Dominio de Software Técnico</h4>
+                <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                  <span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-md text-[11px] font-semibold">PCO-Construdata</span>
+                  <span class="px-2.5 py-1 bg-red-500/10 border border-red-500/30 text-red-400 rounded-md text-[11px] font-semibold">Autocad</span>
+                  <span class="px-2.5 py-1 bg-orange-500/10 border border-orange-500/30 text-orange-400 rounded-md text-[11px] font-semibold">Civil 3D</span>
+                  <span class="px-2.5 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-md text-[11px] font-semibold">SAP 2000</span>
+                  <span class="px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-md text-[11px] font-semibold">MS-Project</span>
+                  <span class="px-2.5 py-1 bg-green-500/10 border border-green-500/30 text-green-400 rounded-md text-[11px] font-semibold">Excel Avanzado</span>
+                  <span class="px-2.5 py-1 bg-purple-500/10 border border-purple-500/30 text-purple-400 rounded-md text-[11px] font-semibold">Visual Basic</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Financial: Yadire -->
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 hover:border-brand-accent/40 transition-all duration-300 shadow-2xl relative group">
+              <!-- Corner Decorative icon -->
+              <div class="absolute top-6 right-6 w-16 h-16 opacity-5 text-brand-accent">
+                <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+                <!-- Avatar Circle with Initial -->
+                <div class="w-20 h-20 shrink-0 bg-gradient-to-br from-brand-accent to-orange-700 rounded-full flex items-center justify-center font-display font-extrabold text-white text-3xl shadow-lg border border-slate-700 shadow-brand-accent/10">
+                  YB
+                </div>
+                
+                <div class="space-y-3 text-center sm:text-left">
+                  <div>
+                    <h3 class="font-display font-bold text-2xl text-white">Yadire V. Bayeh Rangel</h3>
+                    <p class="text-xs text-brand-accent font-semibold tracking-wider uppercase mt-0.5">Gerente Financiera</p>
+                    <p class="text-sm text-slate-300 font-medium mt-1">Administradora de Empresas</p>
+                  </div>
+                  
+                  <div class="text-xs text-slate-400 space-y-1 bg-slate-950/40 p-3 rounded-lg border border-slate-800/80 inline-block text-left w-full sm:w-auto">
+                    <span class="block"><strong class="text-slate-200">Área Directiva:</strong> Finanzas, Presupuesto y Control</span>
+                    <span class="block"><strong class="text-slate-200">Certificación:</strong> Lead Auditor ISO 9001:2000</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Software Expertise -->
+              <div class="mt-6 pt-5 border-t border-slate-800/80">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center sm:text-left">Dominio de Software Administrativo</h4>
+                <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                  <span class="px-2.5 py-1 bg-green-500/10 border border-green-500/30 text-green-400 rounded-md text-[11px] font-semibold">SIIGO (Contabilidad)</span>
+                  <span class="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-md text-[11px] font-semibold">PCO-Construdata</span>
+                  <span class="px-2.5 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-md text-[11px] font-semibold">Excel Avanzado</span>
+                  <span class="px-2.5 py-1 bg-slate-500/10 border border-slate-500/30 text-slate-400 rounded-md text-[11px] font-semibold">Sistemas ERP</span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5: CONTACTO -->
+      <section id="contacto" class="desktop-slide-section bg-gradient-to-br from-brand-navy to-brand-darkBlue px-6 py-10 md:px-16 md:py-16 flex flex-col justify-center">
+        <div class="max-w-7xl mx-auto w-full space-y-10">
+          
+          <div class="border-l-4 border-brand-cyan pl-4">
+            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-white tracking-tight">
+              Contacto y Canales de Atención
+            </h2>
+            <p class="text-slate-400 text-sm mt-1 uppercase tracking-widest font-semibold">
+              Estamos Listos para Materializar sus Ideas de Ingeniería
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Left Side: Office Location and Info -->
+            <div class="lg:col-span-5 flex flex-col justify-between gap-6">
+              <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 flex-grow">
+                <h3 class="font-display font-bold text-xl text-white border-b border-slate-800 pb-3">Oficina Principal</h3>
+                
+                <div class="space-y-4">
+                  <!-- Address -->
+                  <div class="flex items-start gap-4">
+                    <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5 shrink-0">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="block text-xs text-slate-500 uppercase tracking-wider">Dirección</span>
+                      <p class="text-sm font-semibold text-slate-200">Calle 16C Nº 20-06</p>
+                      <p class="text-xs text-slate-400">Valledupar - Cesar, Colombia</p>
+                    </div>
+                  </div>
+
+                  <!-- NIT -->
+                  <div class="flex items-start gap-4">
+                    <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5 shrink-0">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="block text-xs text-slate-500 uppercase tracking-wider">Identificación Tributaria</span>
+                      <p class="text-sm font-semibold text-slate-200">NIT: 800.115.971-3</p>
+                    </div>
+                  </div>
+
+                  <!-- Simulated Contact Channels -->
+                  <div class="flex items-start gap-4">
+                    <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5 shrink-0">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="block text-xs text-slate-500 uppercase tracking-wider">Contacto Telefónico</span>
+                      <p class="text-sm font-semibold text-slate-200">+57 (605) 574-1234</p>
+                    </div>
+                  </div>
+
+                  <!-- Simulated Email -->
+                  <div class="flex items-start gap-4">
+                    <div class="p-2 bg-brand-cyan/10 rounded-lg text-brand-cyan mt-0.5 shrink-0">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="block text-xs text-slate-500 uppercase tracking-wider">Correo Electrónico</span>
+                      <p class="text-sm font-semibold text-slate-200">contacto@prodeinc.com</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Map Simulator Graphic / Design element -->
+              <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-brand-accent/10 text-brand-accent flex items-center justify-center font-bold font-display">
+                    COL
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-white">Valledupar, Cesar</h4>
+                    <p class="text-[10px] text-slate-400">Punto estratégico de operaciones en el Caribe</p>
+                  </div>
+                </div>
+                <span class="px-2 py-0.5 bg-slate-950/80 border border-slate-700 text-[9px] text-brand-cyan rounded font-semibold uppercase shrink-0">Sede Principal</span>
+              </div>
+            </div>
+
+            <!-- Right Side: Interactive Mock Form -->
+            <div class="lg:col-span-7">
+              <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                  <h3 class="font-display font-bold text-xl text-white">Envíenos un Mensaje</h3>
+                  <p class="text-xs text-slate-400 mt-1">Responderemos a su solicitud de cotización o consultoría en menos de 24 horas hábiles.</p>
+                </div>
+                
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Name -->
+                    <div class="space-y-1.5">
+                      <label for="name" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Nombre Completo</label>
+                      <input type="text" id="name" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg px-4 py-2.5 text-sm text-white transition duration-200 outline-none" placeholder="Juan Pérez">
+                    </div>
+                    <!-- Email -->
+                    <div class="space-y-1.5">
+                      <label for="email" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Correo Electrónico</label>
+                      <input type="email" id="email" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg px-4 py-2.5 text-sm text-white transition duration-200 outline-none" placeholder="juan@ejemplo.com">
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Phone -->
+                    <div class="space-y-1.5">
+                      <label for="phone" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Número de Celular</label>
+                      <input type="tel" id="phone" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg px-4 py-2.5 text-sm text-white transition duration-200 outline-none" placeholder="300 123 4567">
+                    </div>
+                    <!-- Subject -->
+                    <div class="space-y-1.5">
+                      <label for="subject" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Asunto</label>
+                      <select id="subject" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg px-4 py-2.5 text-sm text-white transition duration-200 outline-none">
+                        <option value="" disabled selected>Seleccione una opción</option>
+                        <option value="consultoria">Consultoría e Interventoría</option>
+                        <option value="licitacion">Licitación de Obra Pública</option>
+                        <option value="construccion">Proyecto de Construcción Privado</option>
+                        <option value="otro">Otro Asunto</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Message -->
+                  <div class="space-y-1.5">
+                    <label for="message" class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Mensaje / Requerimiento</label>
+                    <textarea id="message" rows="4" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan rounded-lg px-4 py-2.5 text-sm text-white transition duration-200 outline-none resize-none" placeholder="Describa brevemente los detalles de su proyecto..."></textarea>
+                  </div>
+
+                  <!-- Action Button -->
+                  <div class="pt-2">
+                    <button type="submit" class="w-full py-3 bg-brand-cyan hover:bg-brand-cyan/90 text-brand-navy font-bold rounded-lg shadow-lg shadow-brand-cyan/25 hover:shadow-brand-cyan/40 transition-all duration-300 flex items-center justify-center gap-2">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                      </svg>
+                      Enviar Mensaje de Consulta
+                    </button>
+                  </div>
+                </form>
+
+                <!-- Simulated Success Alert -->
+                <div id="success-alert" class="hidden bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-lg p-4 flex items-start gap-3 animate-fade-in-down">
+                  <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <div>
+                    <span class="block font-bold text-sm">¡Mensaje Enviado Exitosamente!</span>
+                    <span class="text-xs text-slate-400">Gracias por ponerse en contacto con PRODEINC LTDA. Nos comunicaremos a la brevedad.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER / LEGAL BAR ================= -->
+  <footer class="h-14 bg-slate-950 border-t border-slate-900 z-50 relative flex items-center justify-between px-4 md:px-8 text-xs text-slate-500">
+    <div>
+      © 2026 <span class="text-slate-400 font-semibold">PRODEINC LTDA</span>. Todos los derechos reservados.
+    </div>
+    <div class="hidden sm:flex items-center gap-4">
+      <span>Calle 16C Nº 20-06, Valledupar</span>
+      <span>•</span>
+      <span>NIT: 800.115.971-3</span>
+    </div>
+  </footer>
+
+  <!-- ================= INTERACTIVE JAVASCRIPT ================= -->
+  <script>
+    const sections = ['inicio', 'quienes-somos', 'servicios', 'experiencia', 'equipo', 'contacto'];
+    const container = document.getElementById('section-container');
+    const tabs = document.querySelectorAll('.tab-btn');
+    const activeIndicator = document.getElementById('active-indicator');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let activeIndex = 0;
+
+    // Contracts portfolio database
+    const contractsData = [
+      {
+        id: "CONTRATO 2011-04-0100",
+        year: "2011",
+        objeto: "Pavimentación en placa huella de las vías Manaure-Hondo del Río y Manaure Pie del Cielo.",
+        valor: 2972014895.40,
+        forma: "UT",
+        participacion: "60%",
+        plazo: "20 meses",
+        adiciones: 907945950.00,
+        total: 3879960845.40
+      },
+      {
+        id: "CONTRATO 2011-04-0107",
+        year: "2011",
+        objeto: "Recuperación de la transitabilidad de la Gamarra-Aguachica, Cesar.",
+        valor: 745513501.20,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 745513501.20
+      },
+      {
+        id: "CONTRATO DE OBRA 144 DE 2008",
+        year: "2008",
+        objeto: "Construcción de pasos subfluviales para línea de aducción acueducto La Jagua de Ibirico.",
+        valor: 575000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 575000000.00
+      },
+      {
+        id: "BB-011-2000",
+        year: "2000",
+        objeto: "Trabajos de construcción del enrocado de defensa fluvial vía Puerto Bocas-Tamalameque.",
+        valor: 125523376.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 125523376.00
+      },
+      {
+        id: "MC-07-2002",
+        year: "2002",
+        objeto: "Pavimentación en concreto rígido instalaciones concesionario Toyota-Renault Valledupar.",
+        valor: 341768178.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "4 meses",
+        adiciones: 0,
+        total: 341768178.00
+      },
+      {
+        id: "BB-01-2005",
+        year: "2005",
+        objeto: "Mejoramiento red terciaria nacional del Cesar. Zona Norte.",
+        valor: 734256899.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 734256899.00
+      },
+      {
+        id: "BB-002-2005",
+        year: "2005",
+        objeto: "Mejoramiento red terciaria nacional del Cesar. Zona Sur.",
+        valor: 960943125.00,
+        forma: "UT",
+        participacion: "70%",
+        plazo: "6.5 meses",
+        adiciones: 365789450.00,
+        total: 1326732575.00
+      },
+      {
+        id: "BB-01-1999 (Vías)",
+        id_show: "BB-01-1999",
+        year: "1999",
+        objeto: "Pavimentación vía Caracolí-Los Venados, Valledupar.",
+        valor: 134256899.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 134256899.00
+      },
+      {
+        id: "BB-07-2006",
+        year: "2006",
+        objeto: "Mejoramiento red terciaria nacional de Boyacá.",
+        valor: 541768178.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "4 meses",
+        adiciones: 93825740.00,
+        total: 635593918.00
+      },
+      {
+        id: "MC-07-2001",
+        year: "2001",
+        objeto: "Pavimentación en concreto rígido doble calzada - Calle Cuarta de Aguachica.",
+        valor: 541768178.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "4 meses",
+        adiciones: 93825740.00,
+        total: 635593918.00
+      },
+      {
+        id: "PRD-007-2000",
+        year: "2000",
+        objeto: "Construcción de muros de protección margen oriental del Río Magdalena, municipios La Gloria, Tamalameque y Gamarra.",
+        valor: 542987000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "6 meses",
+        adiciones: 0,
+        total: 542987000.00
+      },
+      {
+        id: "ORDEN DE SERVICIOS 2012",
+        year: "2012",
+        objeto: "Consultoría para formulación proyecto de pavimentación doble calzada Avenida Ciro Pupo Martínez de La Paz, Cesar.",
+        valor: 120000000.00,
+        forma: "I",
+        participacion: "100%",
+        plazo: "2 meses",
+        adiciones: 0,
+        total: 120000000.00
+      },
+      {
+        id: "CONTRATO 244 DE 2013",
+        year: "2013",
+        objeto: "Consultoría para formulación proyecto de pavimentación red terciaria municipio La Jagua de Ibirico.",
+        valor: 325000000.00,
+        forma: "I",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 325000000.00
+      },
+      {
+        id: "TPI-003-96",
+        year: "1996",
+        objeto: "Interventoría mantenimiento especializado vía férrea sector La Loma-Santa Marta.",
+        valor: 134256899.00,
+        forma: "I",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 134256899.00
+      },
+      {
+        id: "ERJ-001-2007",
+        year: "2007",
+        objeto: "Interventoría mantenimiento especializado vía férrea sector La Loma-Santa Marta.",
+        valor: 96443125.00,
+        forma: "I",
+        participacion: "100%",
+        plazo: "6.5 meses",
+        adiciones: 0,
+        total: 96443125.00
+      },
+      {
+        id: "BB-ME-023-1997",
+        year: "1997",
+        objeto: "Mantenimiento especializado línea férrea La Loma-Santa Marta del K56+750 al K37+830.",
+        valor: 260943125.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "1.5 meses",
+        adiciones: 0,
+        total: 260943125.00
+      },
+      {
+        id: "BB-002-98",
+        year: "1998",
+        objeto: "Mejoramiento vía Poponte Mochila Baja, Chiriguaná, Cesar.",
+        valor: 124667000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "2 meses",
+        adiciones: 0,
+        total: 124667000.00
+      },
+      {
+        id: "BB-003-98",
+        year: "1998",
+        objeto: "Mejoramiento y mantenimiento vía Becerril-Socomba-Pitalito, Becerril, Cesar.",
+        valor: 75000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "8 meses",
+        adiciones: 0,
+        total: 75000000.00
+      },
+      {
+        id: "BB-005-1999",
+        year: "1999",
+        objeto: "Pavimentación asfáltica vía Caracolí-Los Venados, Km 5+300 al 6+300.",
+        valor: 325000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 325000000.00
+      },
+      {
+        id: "BB-01-1999 (Río)",
+        id_show: "BB-01-1999",
+        year: "1999",
+        objeto: "Construcción enrocado defensa fluvial en Puerto de Tamalameque, Cesar.",
+        valor: 134256899.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 134256899.00
+      },
+      {
+        id: "BB-002-1999",
+        year: "1999",
+        objeto: "Rehabilitación vía El Zanjón-Pueblo Bello del Km 30+836 al 31+336.",
+        valor: 960943125.00,
+        forma: "UT",
+        participacion: "60%",
+        plazo: "6.5 meses",
+        adiciones: 365789450.00,
+        total: 1326732575.00
+      },
+      {
+        id: "BB-002-2004",
+        year: "2004",
+        objeto: "Estudios y diseños para optimización infraestructura física Clínica \"Ana María\" de Valledupar.",
+        valor: 120000000.00,
+        forma: "I",
+        participacion: "100%",
+        plazo: "2 meses",
+        adiciones: 0,
+        total: 120000000.00
+      },
+      {
+        id: "ESE-JPP-058",
+        year: "2008",
+        objeto: "Rehabilitación de unidades médicas y plan de manejo ambiental.",
+        valor: 3758000000.00,
+        forma: "UT",
+        participacion: "50%",
+        plazo: "8 meses",
+        adiciones: 0,
+        total: 3758000000.00
+      },
+      {
+        id: "ESE-JPP-059",
+        year: "2008",
+        objeto: "Reposición de redes hidráulicas y sanitarias, readecuación red eléctrica general.",
+        valor: 325000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "3 meses",
+        adiciones: 0,
+        total: 325000000.00
+      },
+      {
+        id: "BB-011-2006",
+        year: "2006",
+        objeto: "Mejoramiento y mantenimiento vía Río Pereira-San Juan del Cesar.",
+        valor: 542987000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "6 meses",
+        adiciones: 0,
+        total: 542987000.00
+      },
+      {
+        id: "BB-013-2006",
+        year: "2006",
+        objeto: "Mejoramiento y mantenimiento vía Buenavista-Maicao.",
+        valor: 120000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "2 meses",
+        adiciones: 0,
+        total: 120000000.00
+      },
+      {
+        id: "CONTRATO DE OBRA 008-2012",
+        year: "2012",
+        objeto: "Pavimentación asfáltica vía Astrea-Arjona del Km 0+00 al 7+125.",
+        valor: 3758000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "8 meses",
+        adiciones: 0,
+        total: 3758000000.00
+      },
+      {
+        id: "CONTRATO DE OBRA 008-2010",
+        year: "2010",
+        objeto: "Mejoramiento con motoniveladora de vías urbanas de La Paz-Cesar.",
+        valor: 12000000.00,
+        forma: "C",
+        participacion: "100%",
+        plazo: "1 mes",
+        adiciones: 0,
+        total: 12000000.00
+      },
+      {
+        id: "CONTRATO 2019-02-1341",
+        year: "2019",
+        objeto: "Mejoramiento tramo vial Los Brasiles-El Toco en San Diego, Cesar.",
+        valor: 3642362453.00,
+        forma: "UT",
+        participacion: "50%",
+        plazo: "3 meses",
+        adiciones: 946541701.00,
+        total: 4588904154.00
+      }
+    ];
+
+    let currentExperienceView = 'table';
+
+    function setExperienceView(view) {
+      currentExperienceView = view;
+      const btnTable = document.getElementById('btn-view-table');
+      const btnCards = document.getElementById('btn-view-cards');
+      const tableView = document.getElementById('experience-table-view');
+      const cardsView = document.getElementById('experience-cards-view');
+
+      if (view === 'table') {
+        btnTable.className = "px-3 py-1.5 text-xs font-semibold rounded-md bg-brand-cyan text-brand-navy transition duration-200 flex items-center gap-1.5";
+        btnCards.className = "px-3 py-1.5 text-xs font-semibold rounded-md text-slate-400 hover:text-white transition duration-200 flex items-center gap-1.5";
+        tableView.classList.remove('hidden');
+        cardsView.classList.add('hidden');
+      } else {
+        btnTable.className = "px-3 py-1.5 text-xs font-semibold rounded-md text-slate-400 hover:text-white transition duration-200 flex items-center gap-1.5";
+        btnCards.className = "px-3 py-1.5 text-xs font-semibold rounded-md bg-brand-cyan text-brand-navy transition duration-200 flex items-center gap-1.5";
+        tableView.classList.add('hidden');
+        cardsView.classList.remove('hidden');
+      }
+      renderExperience();
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(value);
+    }
+
+    function renderExperience() {
+      const searchVal = document.getElementById('exp-search').value.toLowerCase();
+      const filterType = document.getElementById('exp-filter-type').value;
+
+      const filtered = contractsData.filter(contract => {
+        const matchesSearch = contract.id.toLowerCase().includes(searchVal) ||
+                             contract.objeto.toLowerCase().includes(searchVal) ||
+                             contract.year.includes(searchVal);
+        const matchesType = filterType === 'all' || contract.forma === filterType;
+        return matchesSearch && matchesType;
+      });
+
+      const tableBody = document.getElementById('contracts-table-body');
+      const cardsContainer = document.getElementById('experience-cards-view');
+      const emptyState = document.getElementById('experience-empty-state');
+
+      if (filtered.length === 0) {
+        tableBody.innerHTML = '';
+        cardsContainer.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      } else {
+        emptyState.classList.add('hidden');
+      }
+
+      // Render Table View
+      tableBody.innerHTML = filtered.map(c => {
+        const typeBadge = c.forma === 'C' ? '<span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-semibold text-[10px]">C</span>' :
+                          c.forma === 'I' ? '<span class="px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-semibold text-[10px]">I</span>' :
+                          '<span class="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 text-amber-400 font-semibold text-[10px]">UT</span>';
+        
+        const adicionesText = c.adiciones > 0 ? formatCurrency(c.adiciones) : '—';
+        
+        return `
+          <tr class="hover:bg-slate-900/40 border-b border-slate-800/30 transition">
+            <td class="p-3 font-semibold text-slate-300">
+              <span class="block">${c.id_show || c.id}</span>
+              <span class="text-[10px] text-slate-500 font-medium">${c.year}</span>
+            </td>
+            <td class="p-3 text-slate-400 max-w-xs md:max-w-md leading-relaxed whitespace-normal">${c.objeto}</td>
+            <td class="p-3 text-right font-medium text-slate-300">${formatCurrency(c.valor)}</td>
+            <td class="p-3 text-center">${typeBadge}</td>
+            <td class="p-3 text-center text-slate-400">${c.participacion}</td>
+            <td class="p-3 text-center text-slate-400 whitespace-nowrap">${c.plazo}</td>
+            <td class="p-3 text-right text-slate-400">${adicionesText}</td>
+            <td class="p-3 text-right font-semibold text-brand-cyan">${formatCurrency(c.total)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Render Cards View
+      cardsContainer.innerHTML = filtered.map(c => {
+        const typeBadge = c.forma === 'C' ? '<span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-semibold">Construcción (C)</span>' :
+                          c.forma === 'I' ? '<span class="px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-semibold">Interventoría / Consultoría (I)</span>' :
+                          '<span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-semibold">Unión Temporal (UT)</span>';
+
+        const adicionesBlock = c.adiciones > 0 ? `
+          <div class="flex justify-between border-b border-slate-800/30 pb-1.5">
+            <span class="text-slate-500">Adición:</span>
+            <span class="font-medium text-slate-300">${formatCurrency(c.adiciones)}</span>
+          </div>
+        ` : '';
+
+        return `
+          <div class="bg-slate-900/50 border border-slate-800/80 rounded-xl p-5 hover:border-brand-cyan/20 transition-all duration-300 flex flex-col justify-between shadow-lg">
+            <div class="space-y-3">
+              <div class="flex justify-between items-start gap-2">
+                <span class="font-display font-bold text-slate-200 text-sm tracking-tight">${c.id_show || c.id}</span>
+                <span class="text-xs text-slate-500 font-semibold">${c.year}</span>
+              </div>
+              <div class="flex">${typeBadge}</div>
+              <p class="text-xs text-slate-400 leading-relaxed">${c.objeto}</p>
+            </div>
+            
+            <div class="mt-4 pt-4 border-t border-slate-800/80 space-y-1.5 text-[11px]">
+              <div class="flex justify-between border-b border-slate-800/30 pb-1.5">
+                <span class="text-slate-500">Valor Inicial:</span>
+                <span class="font-medium text-slate-300">${formatCurrency(c.valor)}</span>
+              </div>
+              ${adicionesBlock}
+              <div class="flex justify-between border-b border-slate-800/30 pb-1.5">
+                <span class="text-slate-500">Participación / Plazo:</span>
+                <span class="font-medium text-slate-300">${c.participacion} / ${c.plazo}</span>
+              </div>
+              <div class="flex justify-between pt-1">
+                <span class="text-brand-cyan font-semibold">Valor Total:</span>
+                <span class="font-bold text-brand-cyan">${formatCurrency(c.total)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterExperience() {
+      renderExperience();
+    }
+
+    // Adjust the indicator pill background size and position dynamically
+    function updateIndicatorPosition() {
+      if (window.innerWidth >= 1024) {
+        const activeTab = tabs[activeIndex];
+        if (activeTab) {
+          activeIndicator.style.width = `${activeTab.offsetWidth}px`;
+          activeIndicator.style.left = `${activeTab.offsetLeft}px`;
+          activeIndicator.style.display = 'block';
+        }
+      } else {
+        activeIndicator.style.display = 'none';
+      }
+    }
+
+    // Set a tab as active visually
+    function setActiveTab(index) {
+      activeIndex = index;
+      tabs.forEach((tab, idx) => {
+        if (idx === index) {
+          tab.classList.add('text-brand-cyan', 'font-semibold');
+          tab.classList.remove('text-slate-400');
+        } else {
+          tab.classList.remove('text-brand-cyan', 'font-semibold');
+          tab.classList.add('text-slate-400');
+        }
+      });
+      updateIndicatorPosition();
+    }
+
+    // Main section navigation router
+    function goToSection(index) {
+      const isMobile = window.innerWidth < 1024;
+      if (isMobile) {
+        const sectionId = sections[index];
+        const sectionEl = document.getElementById(sectionId);
+        if (sectionEl) {
+          // Scroll the specific element into view
+          const headerOffset = 80;
+          const elementPosition = sectionEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      } else {
+        // Desktop horizontal translation sliding layout
+        container.style.transform = `translateX(-${index * (100 / sections.length)}%)`;
+      }
+      setActiveTab(index);
+    }
+
+    // Mobile scroll-spy implementation: updates header active option while scrolling
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth < 1024) {
+        let currentSectionIndex = 0;
+        sections.forEach((id, index) => {
+          const section = document.getElementById(id);
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            // Highlight section if its top lies within the upper threshold of the screen
+            if (rect.top <= 150 && rect.bottom >= 150) {
+              currentSectionIndex = index;
+            }
+          }
+        });
+        setActiveTab(currentSectionIndex);
+      }
+    });
+
+    // Mobile menu toggler
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('hidden');
+    }
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Initialize layout and active tab sizing
+    window.addEventListener('resize', () => {
+      updateIndicatorPosition();
+      // Recenter or reset layout if transitioning between views
+      if (window.innerWidth >= 1024) {
+        container.style.transform = `translateX(-${activeIndex * (100 / sections.length)}%)`;
+      } else {
+        container.style.transform = 'none';
+      }
+    });
+
+    // Interactive contact form submission mockup
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('contact-form');
+      const successAlert = document.getElementById('success-alert');
+      
+      // Animate submit process button
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalContent = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <svg class="animate-spin h-5 w-5 text-brand-navy" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Procesando Mensaje...
+      `;
+
+      setTimeout(() => {
+        // Clear inputs
+        form.reset();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalContent;
+        
+        // Hide form fields and display successful confirmation alert
+        form.classList.add('hidden');
+        successAlert.classList.remove('hidden');
+
+        // Reset the form after 6 seconds to let them send another message
+        setTimeout(() => {
+          successAlert.classList.add('hidden');
+          form.classList.remove('hidden');
+        }, 6000);
+        
+      }, 1500);
+    }
+
+    // Execute first alignment and experience rendering on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderExperience();
+      setTimeout(updateIndicatorPosition, 200);
+    });
+  </script>
+</body>
+</html>
